@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+<body>
+    <%- include('partials/header', { currentRoute: 'share' }) %>
+    <main class="share-page__main">
+        <h1 class="share-page__title">Pick one. Make it yours. Share it.</h1>
+        <ul class="share-actions">
+            <li class="share-actions__item">
+                <a href="/new-color" class="share-actions__link">
+                    <i class='bx bx-color share-actions__icon'></i>
+                    <h2 class="share-actions__title">Color</h2>
+                    <span class="share-actions__subtitle">A single color can say a lot</span>
+                </a>
+            </li>
+            <li class="share-actions__item">
+                <a href="/new-tag" class="share-actions__link">
+                    <i class='bx bx-purchase-tag share-actions__icon'></i>
+                    <h2 class="share-actions__title">Tag</h2>
+                    <span class="share-actions__subtitle">Labels that give meaning</span>
+                </a>
+            </li>
+            <li class="share-actions__item">
+                <a href="/new-palette" class="share-actions__link">
+                    <i class='bx bx-palette share-actions__icon'></i>
+                    <h2 class="share-actions__title">Palette</h2>
+                    <span class="share-actions__subtitle">A symphony of shades</span>
+                </a>
+            </li>
+        </ul>
+    </main>
+</body>
+</html>

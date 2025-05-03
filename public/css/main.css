@@ -31,14 +31,18 @@ input, button, textarea, select {
 /* || End Reset */
 :root {
     --primary-color: #FF4869;
+    --primary-color-light: #FF637F;
+    --primary-color-lighter: #FFDFE5;
     --default: #000000;
     --neutral: #E7E7E7;
     --neutral-dark: #4C4B4B;
     --neutral-darker: #161a1d;
+    --share-page-actions-transition: all 300ms ease-in-out;
+    --pill-radius: 999em;
 }
 
 body {
-    font-family: Poppins, sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-weight: 400;
     color: var(--default);
     display: grid;
@@ -114,17 +118,79 @@ body {
     & .hero__cta-btn {
         font-family: 'Chillax', sans-serif;
         display: flex;
+        align-items: center;
         padding: .6em 1.5em;
         text-decoration: none;
         background-color: var(--primary-color);
         color: #FFFFFF;
         font-size: 1.2rem;
         font-weight: 600;
-        border-radius: 999em;
+        border-radius: var(--pill-radius);
         transition: transform .2s ease-in-out;
+
+        & .hero__cta-btn-icon {
+            font-size: 1.5rem;
+        }
 
         &:hover {
             transform: scale(1.05);
         }
     }
+}
+
+.share-page__main {
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8em;
+}
+.share-page__title {
+    font-size: 3.5rem;
+}
+.share-actions {
+    list-style: none;
+    display: flex;
+    gap: 5em;
+    padding: 0;
+    margin: 0;
+}
+.share-actions__link {
+    color: var(--neutral-dark);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    transition: var(--share-page-actions-transition);
+}
+.share-actions__icon {
+    font-size: 9rem;
+    padding: .45em;
+    border-radius: var(--pill-radius);
+    color: var(--neutral-dark);
+    box-shadow: 0 0 50px 1px var(--neutral);
+    transition: var(--share-page-actions-transition);
+}
+.share-actions__title {
+    font-size: 3rem;
+    font-family: 'Chillax', sans-serif;
+}
+.share-actions__subtitle {
+    font-size: .8rem;
+    color: transparent;
+    font-weight: 600;
+    transition: var(--share-page-actions-transition);
+}
+.share-actions__link:hover {
+    color: var(--primary-color);
+    transform: translateY(-5%);
+}
+.share-actions__link:hover .share-actions__icon {
+    color: var(--primary-color);
+    background-color: var(--primary-color-lighter);
+    box-shadow: 0 0 50px 1px var(--primary-color-lighter);
+}
+.share-actions__link:hover .share-actions__subtitle {
+    color: var(--primary-color-light);
 }
