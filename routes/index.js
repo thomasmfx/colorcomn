@@ -1,6 +1,6 @@
-const indexRouter = require('./indexRouter');
-const shareRouter = require('./shareRouter');
 const colorsRouter = require('./colorsRouter');
+const shareRouter = require('./shareRouter');
+const indexRouter = require('./indexRouter');
 
 module.exports = {
   index: indexRouter,

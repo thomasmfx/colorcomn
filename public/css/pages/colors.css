@@ -1,14 +1,14 @@
 .colors {
-    margin-top: 10em;
-    align-self: start;
-    justify-self: center;
-    display: flex;
-    gap: 3em;
+  margin-top: 10em;
+  align-self: start;
+  justify-self: center;
+  display: flex;
+  gap: 3em;
 }
 
 .color {
-    width: 100px;
-    height: 100px;
-    border: 2px solid var(--neutral);
-    border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--neutral);
+  border-radius: 50%;
 }

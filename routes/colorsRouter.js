@@ -1,4 +1,5 @@
 const Router = require('express');
+
 const colorsController = require('../controllers/colorsController');
 
 const colorsRouter = Router();
