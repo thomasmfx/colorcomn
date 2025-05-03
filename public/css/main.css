@@ -29,15 +29,62 @@ input, button, textarea, select {
 /* || End Reset */
 :root {
     --primary-color: #FF4869;
+    --default: #000000;
+    --neutral-dark: #4C4B4B;
+    --neutral: #E7E7E7;
 }
 
 body {
     font-family: 'Chillax', sans-serif;
     font-weight: 400;
+    color: var(--default);
 }
 
-.logo {
-    font-weight: bold;
-    font-size: 3rem;
-    color: var(--primary-color);
+.header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em;
+    position: fixed;
+    background-color: #FFFFFF;
+
+    & .header__logo {
+        font-size: 3rem;
+        font-weight: bold;
+        text-decoration: none;
+        color: var(--primary-color);
+    }
+
+    & .header__nav-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        gap: 2em;
+
+        & .header__nav-item {
+            & .header__nav-link {
+                text-decoration: none;
+                color: var(--default);
+                font-size: 1.2rem;
+                font-weight: 600;
+
+                &:hover {
+                    color: var(--primary-color);
+                }
+            }
+
+            & .header__nav-link--highlighted {
+                color: var(--primary-color);
+            }
+        }
+    }
+
+    & .header__separator {
+        flex: 1 1 100%;
+        border: 1px solid var(--neutral);
+    }
 }

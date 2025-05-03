@@ -1,0 +1,22 @@
+<header class="header">
+    <a href="/" class="header__logo">
+        ColorComn
+    </a>
+    <nav class="header__nav">
+        <ul class="header__nav-list">
+            <li class="header__nav-item">
+                <a href="/share" class="header__nav-link <%= currentRoute === 'share' && 'header__nav-link--highlighted'%>">Share</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="/colors" class="header__nav-link <%= currentRoute === 'colors' && 'header__nav-link--highlighted'%>">Colors</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="/tags" class="header__nav-link <%= currentRoute === 'tags' && 'header__nav-link--highlighted'%>">Tags</a>
+            </li>
+            <li class="header__nav-item">
+                <a href="/palettes" class="header__nav-link <%= currentRoute === 'palettes' && 'header__nav-link--highlighted'%>">Palettes</a>
+            </li>
+        </ul>
+    </nav>
+    <hr class="header__separator">
+</header>
