@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/pages/colors.css">
+<body>
+    <%- include('partials/header', { currentRoute: 'colors' }) %>
+    <main class="colors">
+        <% colors.map((color) => { %>
+            <a href="/colors/<%= color.id %>" class="color" style="background-color: <%= color.code %>"></a>
+        <% }) %>
+    </main>
+</body>
+</html>
