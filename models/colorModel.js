@@ -11,56 +11,37 @@ async function getAllColors() {
 async function getColorById(id) {
   const { rows } = await db.query(
     `
-    SELECT * FROM colors WHERE id = $1;
-  `,
+      SELECT
+        c.id,
+        c.name,
+        c.code,
+        c.created_at,
+        COALESCE(
+          (SELECT jsonb_agg(jsonb_build_object('id', t.id, 'name', t.name))
+            FROM tags t
+            JOIN colors_tags ct ON t.id = ct.tag_id
+            WHERE ct.color_id = c.id),
+            '[]'::jsonb
+        ) AS tags,
+        COALESCE(
+          (SELECT jsonb_agg(jsonb_build_object(
+            'id', p.id,
+            'name', p.name,
+            'description', p.description
+          ))
+          FROM palettes p
+          JOIN colors_palettes cp ON p.id = cp.palette_id
+          WHERE cp.color_id = c.id),
+          '[]'::jsonb
+        ) AS palettes
+      FROM colors c
+      WHERE c.id = $1
+      GROUP BY c.id;
+    `,
     [id],
   );
 
-  return rows;
-}
-
-async function getAllTagsForColor(colorId) {
-  const { rows } = await db.query(
-    `
-    SELECT t.id         AS tag_id,
-           t.name       AS tag_name,
-           t.created_at AS tag_created_at
-    FROM tags t
-             JOIN colors_tags ct ON t.id = ct.tag_id
-             JOIN colors c ON ct.color_id = c.id
-    WHERE c.id = $1;
-  `,
-    [colorId],
-  );
-
-  return rows;
-}
-
-async function getAllPalettesForColor(colorId) {
-  const { rows } = await db.query(
-    `
-    SELECT
-      p.id AS palette_id,
-      p.name AS palette_name,
-      p.description AS palette_description,
-      p.created_at AS palette_created_at,
-      jsonb_agg(jsonb_build_object(
-        'id', c.id,
-        'name', c.name,
-        'code', c.code,
-        'created_at', c.created_at,
-        'position', cp.color_position
-      ) ORDER BY cp.color_position) AS colors
-    FROM palettes p
-    JOIN colors_palettes cp ON p.id = cp.palette_id
-    JOIN colors c ON c.id = cp.color_id
-    WHERE c.id = $1
-    GROUP BY p.id, p.name, p.description, p.created_at;
-  `,
-    [colorId],
-  );
-
-  return rows;
+  return rows.length > 0 ? rows[0] : null;
 }
 
 async function insertColor(name, code, tags) {
@@ -130,8 +111,6 @@ async function deleteColor(id) {
 module.exports = {
   getAllColors,
   getColorById,
-  getAllTagsForColor,
-  getAllPalettesForColor,
   insertColor,
   updateColor,
   deleteColor,
