@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/pages/color-details.css">
+    <script src="/js/color-details.js" defer></script>
+<body>
+    <%- include('partials/header', { currentRoute: 'colors' }) %>
+    <main class="main">
+        <div class="color-details">
+            <button class="color-details__color" style="background-color: <%= color.code %>">
+                <span class="color-details__code"><%= color.code.split('').splice(1, 6).join('') %></span>
+            </button>
+            <div class="color-details__wrapper">
+                <h2 class="color-details__name"><%= color.name %></h2>
+                <ul class="color-details__tags">
+                    <% color.tags.map((tag) => {%>
+                        <li class="tags__item">
+                            <a href="/tags/<%= tag.id %>" class="tags__item-link"> <%= tag.name %> </a>
+                        </li>
+                    <% }) %>
+                </ul>
+                <span class="color-details__created-at">Shared: <%= getRelativeDate(color.created_at) %></span>
+                <div class="color-details__actions">
+                    <button class="color-details__action-btn color-details__action-btn--delete">Delete</button>
+                    <button class="color-details__action-btn color-details__action-btn--edit">Edit</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <section class="palettes">
+        <h3 class="palettes__title">Palettes</h3>
+        <div class="palettes__not-found">
+            <span class="palettes__not-found-text">No palettes were found. Be the first one to share a palette with this color!</span>
+            <a href="/new-palette" class="palettes__not-found-link">
+                Share palette
+            </a>
+        </div>
+    </section>
+</body>
+</html>
