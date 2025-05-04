@@ -27,7 +27,7 @@
 .share-actions__icon {
   font-size: 9rem;
   padding: 0.45em;
-  border-radius: var(--pill-radius);
+  border-radius: var(--pill-border);
   color: var(--neutral-dark);
   box-shadow: 0 0 50px 1px var(--neutral);
   transition: var(--share-page-actions-transition);

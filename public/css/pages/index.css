@@ -23,7 +23,7 @@
   color: #ffffff;
   font-size: 1.2rem;
   font-weight: 600;
-  border-radius: var(--pill-radius);
+  border-radius: var(--pill-border);
   transition: transform 0.2s ease-in-out;
 }
 .hero__cta-btn:hover {
