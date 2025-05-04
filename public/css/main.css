@@ -105,3 +105,13 @@ body {
   flex: 1 1 100%;
   border: 1px solid var(--neutral);
 }
+
+::-moz-selection { /* Code for Firefox */
+  color: #FFFFFF;
+  background: var(--primary-color);
+}
+
+::selection {
+  color: #FFFFFF;
+  background: var(--primary-color-light);
+}
