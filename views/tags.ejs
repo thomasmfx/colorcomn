@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/pages/tags.css">
+</head>
+<body>
+    <%- include('partials/header', { currentRoute: 'tags' }) %>
+    <main class="container">
+        <h2 class="visually-hidden">All Tags</h2>
+        <ul class="tags-list">
+            <% tags.forEach((tag) => { %>
+                <li class="tags-list__item">
+                    <a href="/tags/<%= tag.id %>" class="tags-list__item-link pill-style">
+                        <%= tag.name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
+    </main>
+</body>
+</html>
