@@ -48,20 +48,14 @@
     list-style: none;
 }
 
-.tags__item {
+.tags__item-link {
+    height: 30px;
+    text-decoration: none;
+    font-size: .7rem;
     transition: all 0.2s ease-in-out;
 }
-.tags__item:hover {
+.tags__item-link:hover {
     transform: scale(1.05);
-}
-.tags__item-link {
-    border-radius: var(--pill-border);
-    background-color: var(--neutral);
-    padding: .4em 1em;
-    text-decoration: none;
-    color: var(--neutral-dark);
-    font-weight: 600;
-    font-size: .7rem;
 }
 
 .color-details__wrapper {

@@ -18,17 +18,19 @@ async function getColor(req, res) {
   });
 }
 
-async function createColorGet(req, res) {
-  res.render('create-color');
-}
-
 async function createColor(req, res) {
   const { name, code, tags } = req.body;
-  const jsonTags = JSON.stringify(tags);
 
-  await colorModel.insertColor(name, code, jsonTags);
+  const uppercasedCode = `#${code.substring(1).toUpperCase()}`;
+  const parsedTags = JSON.parse(tags).map((tag) => tag.id);
 
-  res.redirect('/colors');
+  const returnedId = await colorModel.insertColor(
+    name,
+    uppercasedCode,
+    parsedTags,
+  );
+
+  res.redirect(`/colors/${returnedId}`);
 }
 
 async function updateColor(req, res) {
@@ -50,7 +52,6 @@ async function deleteColor(req, res) {
 module.exports = {
   getAllColors,
   getColor,
-  createColorGet,
   createColor,
   updateColor,
   deleteColor,

@@ -51,19 +51,23 @@ async function insertColor(name, code, tags) {
       INSERT INTO colors (name, code, created_at)
       VALUES ($1, $2, NOW())
       RETURNING id
+    ),
+    tag_insertion AS (
+      INSERT INTO colors_tags (color_id, tag_id)
+      SELECT
+        nc.id,
+        tag_id_value
+      FROM
+        new_color nc,
+        unnest($3::int[]) AS tag_id_value
+      RETURNING color_id
     )
-    INSERT INTO colors_tags (color_id, tag_id)
-    SELECT
-      nc.id,        
-      tag_id_value
-    FROM
-      new_color nc,     
-      unnest($3::int[]) AS tag_id_value;
+    SELECT id FROM new_color
   `,
     [name, code, tags],
   );
 
-  return rows;
+  return rows[0].id;
 }
 
 async function updateColor(id, name, code, tags) {

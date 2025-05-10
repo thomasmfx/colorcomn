@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/pages/share-color.css">
+</head>
+<body>
+    <%- include('partials/header', { currentRoute: 'share' }) %>
+
+    <main class="container">
+        <section class="color-share">
+            <form action="/colors" method="POST" class="color-form" id="colorForm">
+                <!-- Color Picker Section -->
+                <div class="color-picker">
+                    <input type="color"
+                           id="colorPickerInput"
+                           name="code"
+                           class="color-picker__input"
+                           value="#000000"
+                           aria-label="Select color">
+
+                    <input type="text"
+                           id="colorCodeInput"
+                           class="color-picker__code"
+                           value="000000"
+                           placeholder="000000"
+                           maxlength="6"
+                           aria-label="Color HEX code">
+                </div>
+
+                <!-- Color Name Section -->
+                <div class="form-field">
+                    <label class="form-field__label" for="colorName">Color Name</label>
+                    <input type="text"
+                           class="form-field__input"
+                           id="colorName"
+                           name="name"
+                           required>
+                </div>
+
+                <!-- Tags Section -->
+                <div class="form-field">
+                    <div class="form-field__header">
+                        <span id="tagsLabel" class="form-field__label">Tags</span>
+                        <button type="button"
+                                class="tag-add-btn"
+                                aria-label="Add tag"
+                                aria-controls="tagModal">
+                            <i class='bx bx-plus-circle' aria-hidden="true"></i>
+                        </button>
+                    </div>
+
+                    <div class="tag-container">
+                        <ul class="tag-list" aria-labelledby="tagsLabel">
+                            <!-- Tags will be added here dynamically -->
+                        </ul>
+                        <input type="hidden" name="tags" id="selectedTagsInput">
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">Share</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- Tag Selection Modal -->
+    <dialog id="tagModal" class="modal" aria-labelledby="modalTitle">
+        <div class="modal__content">
+            <h2 class="modal__title" id="modalTitle">Select a tag</h2>
+            <p class="modal__subtitle">Give a deeper meaning to your color</p>
+
+            <div class="modal__body">
+                <ul class="tag-options">
+                    <% tags.forEach((tag) => { %>
+                        <li class="tag-options__item pill-style"
+                            data-id="<%= tag.id %>"
+                            data-name="<%= tag.name %>"
+                            tabindex="0"
+                            role="option"
+                            aria-label="Select tag: <%= tag.name%>">
+                            <%= tag.name %>
+                        </li>
+                    <% }) %>
+                </ul>
+                <p class="modal__empty-message">No tags available</p>
+            </div>
+        </div>
+    </dialog>
+
+    <script src="/js/colorPicker.js" defer></script>
+    <script src="/js/tagManager.js" defer></script>
+</body>
+</html>
