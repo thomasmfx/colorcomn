@@ -1,6 +1,5 @@
 const db = require('../db/pool');
 
-// || Tags
 async function getAllTags() {
   const { rows } = await db.query(`
     SELECT * FROM tags;
@@ -12,30 +11,25 @@ async function getAllTags() {
 async function getTagById(id) {
   const { rows } = await db.query(
     `
-    SELECT * FROM tags WHERE id = $1;
-  `,
+        SELECT
+            t.id,
+            t.name,
+            t.created_at,
+            COALESCE(
+                    (SELECT jsonb_agg(jsonb_build_object('id', c.id, 'name', c.name, 'code', c.code))
+                     FROM colors c
+                              JOIN colors_tags ct ON c.id = ct.color_id
+                     WHERE ct.tag_id = t.id),
+                    '[]'::jsonb
+            ) AS colors
+        FROM tags t
+        WHERE t.id = $1
+        GROUP BY t.id;
+    `,
     [id],
   );
 
-  return rows;
-}
-
-async function getAllColorsForTag(tagId) {
-  const { rows } = await db.query(
-    `
-      SELECT c.id         AS color_id,
-             c.name       AS color_name,
-             c.code       AS color_code,
-             c.created_at AS color_created_at
-      FROM colors c
-               JOIN colors_tags ct ON c.id = ct.color_id
-               JOIN tags t ON ct.tag_id = t.id
-      WHERE t.id = $1;
-  `,
-    [tagId],
-  );
-
-  return rows;
+  return rows[0];
 }
 
 async function insertTag(name, colors) {
@@ -52,7 +46,8 @@ async function insertTag(name, colors) {
       nt.id
     FROM
       new_tag nt,     
-      unnest($2::int[]) AS color_id_value;
+      unnest($2::int[]) AS color_id_value
+    RETURNING nt.id; 
   `,
     [name, colors],
   );
@@ -105,7 +100,6 @@ async function deleteTagById(id) {
 module.exports = {
   getAllTags,
   getTagById,
-  getAllColorsForTag,
   insertTag,
   updateTagById,
   deleteTagById,
