@@ -51,6 +51,7 @@ select {
   --default: #000000;
   --neutral: #e7e7e7;
   --neutral-dark: #4c4b4b;
+  --neutral-dark-opaque: #4c4b4b80;
   --neutral-darker: #161a1d;
   --share-page-actions-transition: all 300ms ease-in-out;
   --pill-border: 999em;
@@ -114,4 +115,17 @@ body {
 ::selection {
   color: #FFFFFF;
   background: var(--primary-color-light);
+}
+
+.pill-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1em;
+  border: none;
+  border-radius: var(--pill-border);
+  background-color: var(--neutral);
+  color: var(--neutral-dark);
+  font-weight: 600;
+  cursor: pointer;
 }
