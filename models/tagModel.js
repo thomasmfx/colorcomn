@@ -39,20 +39,22 @@ async function insertTag(name, colors) {
       INSERT INTO tags (name, created_at)
       VALUES ($1, NOW())
       RETURNING id
+    ),
+    color_insertion AS (
+      INSERT INTO colors_tags (color_id, tag_id)
+      SELECT        
+        color_id_value,
+        nt.id
+      FROM
+        new_tag nt,     
+        unnest($2::int[]) AS color_id_value
     )
-    INSERT INTO colors_tags (color_id, tag_id)
-    SELECT        
-      color_id_value,
-      nt.id
-    FROM
-      new_tag nt,     
-      unnest($2::int[]) AS color_id_value
-    RETURNING nt.id; 
+    SELECT id from new_tag;
   `,
     [name, colors],
   );
 
-  return rows;
+  return rows[0].id;
 }
 
 async function updateTagById(id, name, colors) {

@@ -1,3 +1,4 @@
+const colorModel = require('../models/colorModel');
 const tagModel = require('../models/tagModel');
 
 async function getSharePage(req, res) {
@@ -12,7 +13,16 @@ async function getShareColorPage(req, res) {
   });
 }
 
+async function getShareTagPage(req, res) {
+  const colors = await colorModel.getAllColors();
+
+  res.render('share-tag', {
+    colors: colors,
+  });
+}
+
 module.exports = {
   getSharePage,
   getShareColorPage,
+  getShareTagPage,
 };

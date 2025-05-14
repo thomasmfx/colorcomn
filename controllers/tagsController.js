@@ -18,7 +18,18 @@ async function getTag(req, res) {
   });
 }
 
+async function createTag(req, res) {
+  const { name, colors } = req.body;
+
+  const parsedColors = JSON.parse(colors).map((color) => parseInt(color));
+
+  const returnedId = await tagModel.insertTag(name, parsedColors);
+
+  res.redirect(`/tags/${returnedId}`);
+}
+
 module.exports = {
   getAllTags,
   getTag,
+  createTag,
 };
