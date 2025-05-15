@@ -3,10 +3,10 @@ const db = require('../db/pool');
 async function getAllPalettes() {
   const { rows } = await db.query(`
     SELECT
-      p.id AS palette_id,
-      p.name AS palette_name,
-      p.description AS palette_description,
-      p.created_at AS palette_created_at,
+      p.id AS id,
+      p.name AS name,
+      p.description AS description,
+      p.created_at AS created_at,
       jsonb_agg(jsonb_build_object(
         'id', c.id,
         'name', c.name,
@@ -27,10 +27,10 @@ async function getPaletteById(id) {
   const { rows } = await db.query(
     `
     SELECT
-      p.id AS palette_id,
-      p.name AS palette_name,
-      p.description AS palette_description,
-      p.created_at AS palette_created_at,
+      p.id AS id,
+      p.name AS name,
+      p.description AS description,
+      p.created_at AS created_at,
       jsonb_agg(jsonb_build_object(
         'id', c.id,
         'name', c.name,
@@ -47,7 +47,7 @@ async function getPaletteById(id) {
     [id],
   );
 
-  return rows;
+  return rows[0];
 }
 
 async function insertPalette(name, description, colors) {

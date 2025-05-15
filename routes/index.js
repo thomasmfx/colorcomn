@@ -1,6 +1,7 @@
+const palettesRouter = require('./palettesRouter');
 const colorsRouter = require('./colorsRouter');
-const shareRouter = require('./shareRouter');
 const indexRouter = require('./indexRouter');
+const shareRouter = require('./shareRouter');
 const tagsRouter = require('./tagsRouter');
 
 module.exports = {
@@ -8,4 +9,5 @@ module.exports = {
   share: shareRouter,
   colors: colorsRouter,
   tags: tagsRouter,
+  palettes: palettesRouter,
 };

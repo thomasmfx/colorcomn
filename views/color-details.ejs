@@ -2,6 +2,7 @@
 <html>
     <%- include('partials/head') %>
     <link rel="stylesheet" href="/css/pages/color-details.css">
+    <link rel="stylesheet" href="/css/pages/palettes.css">
     <script src="/js/color-details.js" type="module" defer></script>
 <body>
     <%- include('partials/header', { currentRoute: 'colors' }) %>
@@ -29,12 +30,33 @@
     </main>
     <section class="palettes">
         <h3 class="palettes__title">Palettes</h3>
-        <div class="palettes__not-found">
-            <span class="palettes__not-found-text">No palettes were found. Be the first one to share a palette with this color!</span>
-            <a href="/new-palette" class="palettes__not-found-link">
-                Share palette
-            </a>
-        </div>
+        <% if (locals.color.palettes.length) { %>
+            <ul class="palettes-list">
+                <% color.palettes.forEach((palette) => { %>
+                    <li class="palettes-list__item">
+                        <a href="/palettes/<%= palette.id %>" class="palette-link">
+                            <ul class="palette-colors-list">
+                                <% palette.colors.forEach((color) => { %>
+                                    <li
+                                            class="palette-colors-list__item"
+                                            style="background-color: <%= color.code %>"
+                                            data-position="<%= color.position %>"
+                                    >
+                                    </li>
+                                <% }) %>
+                            </ul>
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <div class="palettes__not-found">
+                <span class="palettes__not-found-text">No palettes were found. Be the first one to share a palette with this color!</span>
+                <a href="/share/palette" class="palettes__not-found-link">
+                    Share palette
+                </a>
+            </div>
+        <% } %>
     </section>
 </body>
 </html>

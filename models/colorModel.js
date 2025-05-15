@@ -11,32 +11,49 @@ async function getAllColors() {
 async function getColorById(id) {
   const { rows } = await db.query(
     `
-      SELECT
-        c.id,
-        c.name,
-        c.code,
-        c.created_at,
-        COALESCE(
-          (SELECT jsonb_agg(jsonb_build_object('id', t.id, 'name', t.name))
-            FROM tags t
-            JOIN colors_tags ct ON t.id = ct.tag_id
-            WHERE ct.color_id = c.id),
-            '[]'::jsonb
-        ) AS tags,
-        COALESCE(
-          (SELECT jsonb_agg(jsonb_build_object(
-            'id', p.id,
-            'name', p.name,
-            'description', p.description
-          ))
-          FROM palettes p
-          JOIN colors_palettes cp ON p.id = cp.palette_id
-          WHERE cp.color_id = c.id),
-          '[]'::jsonb
-        ) AS palettes
-      FROM colors c
-      WHERE c.id = $1
-      GROUP BY c.id;
+        SELECT
+            c.id,
+            c.name,
+            c.code,
+            c.created_at,
+            COALESCE(
+                    (SELECT jsonb_agg(jsonb_build_object('id', t.id, 'name', t.name) ORDER BY t.name)
+                     FROM tags t
+                              JOIN colors_tags ct ON t.id = ct.tag_id
+                     WHERE ct.color_id = c.id),
+                    '[]'::jsonb
+            ) AS tags,
+            COALESCE(
+                    (SELECT jsonb_agg(
+                                    jsonb_build_object(
+                                            'id', p.id,
+                                            'name', p.name,
+                                            'description', p.description,
+                                            'created_at', p.created_at,
+                                            'colors', (
+                                                SELECT COALESCE(jsonb_agg(
+                                                                        jsonb_build_object(
+                                                                                'id', c_inner.id,
+                                                                                'name', c_inner.name,
+                                                                                'code', c_inner.code,
+                                                                                'created_at', c_inner.created_at,
+                                                                                'position', cp_inner.color_position
+                                                                        ) ORDER BY cp_inner.color_position
+                                                                ), '[]'::jsonb)
+                                                FROM colors_palettes cp_inner
+                                                         JOIN colors c_inner ON cp_inner.color_id = c_inner.id
+                                                WHERE cp_inner.palette_id = p.id
+                                            )
+                                    ) ORDER BY p.name
+                            )
+                     FROM palettes p
+                              JOIN colors_palettes cp_outer ON p.id = cp_outer.palette_id
+                     WHERE cp_outer.color_id = c.id),
+                    '[]'::jsonb
+            ) AS palettes
+        FROM colors c
+        WHERE c.id = $1
+        GROUP BY c.id, c.name, c.code, c.created_at;-- Explicitly list all selected non-aggregated columns from 'c'
     `,
     [id],
   );

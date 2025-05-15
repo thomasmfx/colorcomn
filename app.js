@@ -14,6 +14,7 @@ app.set('views', './views');
 app.use('/share', routes.share);
 app.use('/colors', routes.colors);
 app.use('/tags', routes.tags);
+app.use('/palettes', routes.palettes);
 app.use('/', routes.index);
 
 const PORT = process.env.PORT || 3000;

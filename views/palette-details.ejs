@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <%- include('partials/head') %>
+    <link rel="stylesheet" href="/css/pages/palette-details.css">
+<body>
+    <%- include('partials/header', { currentRoute: 'palettes' }) %>
+    <main class="container">
+        <section class="palette-details">
+            <ul class="palette-colors-list">
+                <% palette.colors.forEach((color) => { %>
+                    <li
+                        class="palette-colors-list__item"
+                        style="background-color: <%= color.code %>"
+                        data-position="<%= color.position %>"
+                    >
+                        <a
+                            href="/colors/<%= color.id %>"
+                            class="palette-colors-list__item-link"
+                        >
+                        </a>
+                    </li>
+                <% }) %>
+            </ul>
+            <div class="palette-details__wrapper">
+                <h2 class="palette-details__name"><%= palette.name %></h2>
+                <p class="palette-details__description"> <%= palette.description %></p>
+                <span class="palette-details__created-at">Shared: <%= getRelativeDate(palette.created_at) %></span>
+            </div>
+        </section>
+    </main>
+</body>
+</html>
