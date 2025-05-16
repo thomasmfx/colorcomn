@@ -107,13 +107,14 @@ body {
   border: 1px solid var(--neutral);
 }
 
-::-moz-selection { /* Code for Firefox */
-  color: #FFFFFF;
+::-moz-selection {
+  /* Code for Firefox */
+  color: #ffffff;
   background: var(--primary-color);
 }
 
 ::selection {
-  color: #FFFFFF;
+  color: #ffffff;
   background: var(--primary-color-light);
 }
 
