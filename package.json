@@ -10,7 +10,9 @@
     "lint": "eslint . ",
     "lint:fix": "eslint . --fix ",
     "prepare": "husky",
-    "lint-staged": "lint-staged"
+    "lint-staged": "lint-staged",
+    "scss": "sass --watch public/scss:public/css",
+    "scss-build": "sass scss:public/css --style=compressed"
   },
   "husky": {
     "hooks": {
@@ -33,7 +35,8 @@
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "express-validator": "^7.2.1",
-    "pg": "^8.15.6"
+    "pg": "^8.15.6",
+    "sass": "^1.89.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.26.0",
