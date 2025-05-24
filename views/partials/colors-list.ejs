@@ -1,0 +1,12 @@
+<ul class="list gap--l">
+    <% colors.map((color) => { %>
+        <li class="list__item color">
+            <a
+                href="/colors/<%= color.id %>"
+                class="color-swatch link"
+                style="background-color: <%= color.code %>"
+                aria-label="Color <%= color.code %>">
+            </a>
+        </li>
+    <% }) %>
+</ul>

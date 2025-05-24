@@ -1,52 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/pages/share-tag.css">
+    <%- include('partials/head-boilerplate') %>
     <script src="/js/colorManager.js" type="module" defer></script>
 </head>
 <body>
     <%- include('partials/header', { currentRoute: 'share' }) %>
 
-    <main class="container">
-        <section class="tag-share">
-            <form action="/tags" method="POST" class="tag-form" id="tagForm">
-                <!-- Tag Name Section -->
-                <div class="form-field">
-                    <input type="text"
-                           class="form-field__input form-field__tag-name-input"
-                           id="tagName"
-                           name="name"
-                           maxlength="15"
-                           placeholder="Tag name"
-                           aria-label="Tag name"
-                           autofocus
-                           required>
+    <main class="main self-center center">
+        <form action="/tags" method="POST" class="form tag-form" id="tagForm">
+            <!-- Tag Name Section -->
+            <div class="form-field">
+                <input type="text"
+                       class="form-field__input form-field__tag-name-input"
+                       id="tagName"
+                       name="name"
+                       maxlength="15"
+                       placeholder="Tag name"
+                       aria-label="Tag name"
+                       autofocus
+                       required>
+            </div>
+
+            <!-- Colors Section -->
+            <div class="form-field">
+                <div class="form-field__header">
+                    <span id="colorsLabel" class="form-field__label">Colors</span>
+                    <button type="button"
+                            class="color-add-btn"
+                            aria-label="Add color"
+                            aria-controls="colorModal">
+                        <i class='bx bx-plus-circle' aria-hidden="true"></i>
+                    </button>
                 </div>
 
-                <!-- Colors Section -->
-                <div class="form-field">
-                    <div class="form-field__header">
-                        <span id="colorsLabel" class="form-field__label">Colors</span>
-                        <button type="button"
-                                class="color-add-btn"
-                                aria-label="Add color"
-                                aria-controls="colorModal">
-                            <i class='bx bx-plus-circle' aria-hidden="true"></i>
-                        </button>
-                    </div>
-
-                    <div class="color-container">
-                        <ul class="color-list" aria-labelledby="colorsLabel">
-                            <!-- Colors will be added here dynamically -->
-                        </ul>
-                        <input type="hidden" name="colors" id="selectedColorsInput">
-                    </div>
+                <div class="color-container">
+                    <ul class="color-list list" aria-labelledby="colorsLabel">
+                        <!-- Colors will be added here dynamically -->
+                    </ul>
+                    <input type="hidden" name="colors" id="selectedColorsInput">
                 </div>
+            </div>
 
-                <button type="submit" class="submit-btn">Share</button>
-            </form>
-        </section>
+            <button type="submit" class="btn-submit">Share</button>
+        </form>
     </main>
 
     <!-- Color Selection Modal -->
@@ -69,7 +66,7 @@
                         </li>
                     <% }) %>
                 </ul>
-                <p class="modal__empty-message">No colors available</p>
+                <p class="modal__fallback-message">No colors available</p>
             </div>
         </div>
     </dialog>

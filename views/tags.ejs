@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/pages/tags.css">
+    <%- include('partials/head-boilerplate') %>
 </head>
 <body>
     <%- include('partials/header', { currentRoute: 'tags' }) %>
-    <main class="container">
+    <main class="main spacing-top">
         <h2 class="visually-hidden">All Tags</h2>
-        <ul class="tags-list">
+        <ul class="list gap--l tags-list">
             <% tags.forEach((tag) => { %>
-                <li class="tags-list__item">
-                    <a href="/tags/<%= tag.id %>" class="tags-list__item-link pill-style">
+                <li class="list__item">
+                    <a href="/tags/<%= tag.id %>" class="link tag">
                         <%= tag.name %>
                     </a>
                 </li>

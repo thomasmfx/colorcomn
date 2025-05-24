@@ -1,17 +1,10 @@
 <!DOCTYPE html>
-<html>
-    <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/pages/index.css">
+<html lang="en">
+<head>
+    <%- include('partials/head-boilerplate') %>
+</head>
 <body>
     <%- include('partials/header', { currentRoute: '' }) %>
-    <section class="hero">
-        <h1 class="hero__title">
-            Discover, share and organize colors together
-        </h1>
-        <a href="/colors" class="hero__cta-btn">
-            Explore
-            <i class='bx bx-right-arrow-alt hero__cta-btn-icon' ></i>
-        </a>
-    </section>
+    <%- include('partials/hero') %>
 </body>
 </html>

@@ -1,0 +1,60 @@
+@use '../abstract/variables' as var;
+
+.modal {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 100vw;
+  max-height: 100vh;
+  background-color: var.$color-neutral-dark-opaque;
+
+  &::backdrop {
+    background-color: var.$color-neutral-dark-opaque;
+  }
+
+  &:not([open]) {
+    display: none;
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    max-height: 400px;
+    background-color: var.$color-default-light;
+    border-radius: var.$radius-lg;
+    padding: var.$spacing-lg;
+  }
+
+  &__title {
+    font-weight: 600;
+  }
+
+  &__subtitle {
+    font-size: .8rem;
+    font-weight: 600;
+    color: var.$color-neutral-dark;
+  }
+
+  &__body {
+    overflow: auto;
+    height: 100%;
+    width: 100%;
+    margin-top: var.$spacing-lg;
+  }
+
+  &__fallback-message {
+    text-align: center;
+    display: none;
+    font-weight: 500;
+    color: var.$color-neutral-dark;
+  }
+}

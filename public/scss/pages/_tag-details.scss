@@ -1,0 +1,30 @@
+@use '../abstract/variables' as var;
+
+.main-container {
+  gap: 0;
+}
+
+.tag-details {
+  border-bottom: 2px solid var.$color-neutral;
+
+  &__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2em;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1.5em;
+  }
+}
+
+.tag-name {
+  font-size: 4rem;
+  font-family: 'Chillax', sans-serif;
+}
+
+.colors {
+  width: 100%;
+  padding-top: 2em;
+}

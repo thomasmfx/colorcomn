@@ -1,0 +1,14 @@
+@use '../abstract/variables' as var;
+
+body {
+  font-family: 'Poppins', sans-serif;
+  min-height: 100dvh;
+  display: grid;
+  background-color: var.$color-default-light;
+  color: var.$color-default-dark;
+}
+
+::selection {
+  background: #FF637F;
+  color: var.$color-default-light;
+}

@@ -1,0 +1,23 @@
+@use '../abstract/variables' as var;
+
+.btn {
+  width: 100%;
+  min-width: 100px;
+  padding: 0.2em 1em;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: var.$radius-sm;
+  transition: transform var.$transition-normal;
+
+  &--primary {
+    color: var.$color-default-light;
+    background-color: var.$color-primary;
+  }
+
+  &--secondary {
+    background: none;
+    border: 2px solid var.$color-primary;
+    color: var.$color-primary;
+  }
+}
