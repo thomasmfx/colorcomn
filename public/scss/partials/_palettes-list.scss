@@ -1,0 +1,12 @@
+@use '../abstract/variables' as var;
+
+.palette {
+  $color-swatch-width: 350px;
+  flex: 1;
+  min-width: $color-swatch-width;
+  max-width: $color-swatch-width;
+  height: 190px;
+  padding: 1em;
+  border-radius: 1em;
+  cursor: pointer;
+}

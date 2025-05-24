@@ -1,0 +1,66 @@
+@use '../abstract/variables' as var;
+
+.spacing-top { /* Space from top considering header height */
+  margin-top: calc(#{var.$header-height} + 4rem);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.gap {
+  &--xs {
+    gap: 0.5em;
+  }
+
+  &--s {
+    gap: 1em;
+  }
+
+  &--m {
+    gap: 2em;
+  }
+
+  &--l {
+    gap: 3em;
+  }
+
+  &--xl {
+    gap: 4em;
+  }
+
+  &--xxl {
+    gap: 5em;
+  }
+}
+
+.creation-date {
+  margin-top: 2em;
+  font-size: 0.8rem;
+  color: var.$color-neutral-dark;
+}
+
+.center {
+  align-items: center;
+  align-content: center;
+  justify-items: center;
+  justify-content: center;
+}
+
+.self-center {
+  align-self: center;
+  justify-self: center;
+}

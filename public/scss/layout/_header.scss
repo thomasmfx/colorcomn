@@ -1,0 +1,51 @@
+@use '../abstract/variables' as var;
+
+.header {
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  height: var.$header-height;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em 1em 0 1em;
+  font-family: 'Chillax', sans-serif;
+  background-color: var.$color-default-light;
+
+  &__logo {
+    font-size: 3rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: var.$color-primary;
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    gap: 2em;
+  }
+
+  &__nav-link {
+    text-decoration: none;
+    color: var.$color-default-dark;
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__nav-link:hover {
+    color: var.$color-primary;
+  }
+
+  &__nav-link--highlighted {
+    color: var.$color-primary;
+  }
+
+  &__separator {
+    flex: 1 1 100%;
+    border: 1px solid var.$color-neutral;
+  }
+}

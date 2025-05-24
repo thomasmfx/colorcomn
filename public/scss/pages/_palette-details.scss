@@ -1,0 +1,33 @@
+@use '../abstract/variables' as var;
+
+$color-swatch-height: 400px;
+
+.palette-details {
+  display: grid;
+  grid-template-columns: repeat(2, $color-swatch-height);
+  grid-template-rows: 400px;
+  justify-content: center;
+  gap: 3em;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 35ch;
+  }
+
+  &__name {
+    font-family: 'Chillax', sans-serif;
+    font-size: 2.5rem;
+  }
+
+  &__description {
+    font-style: italic;
+    color: var.$color-neutral-dark;
+  }
+
+  &__created-at {
+    margin-top: 2em;
+    font-size: 0.8rem;
+    color: var.$color-neutral-dark;
+  }
+}

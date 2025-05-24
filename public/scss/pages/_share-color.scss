@@ -1,0 +1,62 @@
+@use '../abstract/variables' as var;
+
+.color-form {
+  width: 400px;
+
+  /* ===== Color Picker ===== */
+  .color-picker {
+    display: grid;
+    grid-template-rows: min-content min-content;
+    justify-items: center;
+    gap: var.$spacing-md;
+    margin-bottom: var.$spacing-md;
+
+    &__input {
+      width: 140px;
+      height: 140px;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      border-radius: var.$radius-circle;
+
+      &::-webkit-color-swatch {
+        border: none;
+        border-radius: var.$radius-circle;
+      }
+    }
+
+    &__code {
+      width: 100px;
+      border: none;
+      outline: none;
+      text-align: center;
+      font-weight: 600;
+      background-color: transparent;
+    }
+  }
+
+  /* ===== Tags ===== */
+  .tag {
+    &__text {
+      transition: opacity var.$transition-fast;
+    }
+
+    &__icon {
+      position: absolute;
+      font-size: 1.2rem;
+      display: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+      transform: none;
+
+      .tag__icon {
+        display: block;
+      }
+      .tag__text {
+        opacity: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,54 @@
+@use '../abstract/variables' as var;
+
+.form {
+  display: grid;
+  box-shadow: rgba(17, 12, 46, 0.15) 0 10px 50px 0;
+  gap: var.$spacing-md;
+  padding: var.$spacing-lg;
+  border-radius: var.$radius-lg;
+  background-color: var.$color-default-light;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: var.$spacing-sm;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: var.$spacing-sm;
+  }
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+
+  &__input {
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: left;
+    height: 44px;
+    background-color: transparent;
+    border: 1px solid var.$color-neutral-dark;
+    border-radius: var.$radius-md;
+    padding: 0 var.$spacing-sm;
+
+    &::placeholder {
+      color: var.$color-neutral;
+    }
+  }
+}
+
+.btn-submit {
+  height: 45px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: var.$spacing-lg;
+  border-radius: var.$radius-md;
+  background-color: var.$color-primary;
+  color: var.$color-default-light;
+  transition: background-color var.$transition-normal;
+}

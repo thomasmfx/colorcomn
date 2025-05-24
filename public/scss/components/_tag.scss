@@ -1,0 +1,30 @@
+@use '../abstract/variables' as var;
+
+.tag {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 3rem;
+  cursor: pointer;
+  padding: .6em 1em;
+  border: none;
+  border-radius: var.$pill-border;
+  background-color: var.$color-neutral;
+  color: var.$color-default-dark;
+  transition: var.$transition-normal;
+
+  &:hover,
+  &:focus {
+      outline: none;
+      transform: scale(var.$scale-md);
+  }
+
+  &--xs {
+    font-size: 0.7rem;
+  }
+
+  &--s {
+    font-size: 0.8rem;
+  }
+}
