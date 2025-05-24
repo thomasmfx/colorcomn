@@ -1,30 +1,15 @@
 <!DOCTYPE html>
-<html>
-    <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/pages/palette-details.css">
+<html lang="en">
+    <%- include('partials/head-boilerplate') %>
 <body>
     <%- include('partials/header', { currentRoute: 'palettes' }) %>
-    <main class="container">
+    <main class="main self-center">
         <section class="palette-details">
-            <ul class="palette-colors-list">
-                <% palette.colors.forEach((color) => { %>
-                    <li
-                        class="palette-colors-list__item"
-                        style="background-color: <%= color.code %>"
-                        data-position="<%= color.position %>"
-                    >
-                        <a
-                            href="/colors/<%= color.id %>"
-                            class="palette-colors-list__item-link"
-                        >
-                        </a>
-                    </li>
-                <% }) %>
-            </ul>
+            <%- include('partials/palette-colors-list', { colors: palette.colors, includeColorsLink: true }) %>
             <div class="palette-details__wrapper">
                 <h2 class="palette-details__name"><%= palette.name %></h2>
                 <p class="palette-details__description"> <%= palette.description %></p>
-                <span class="palette-details__created-at">Shared: <%= getRelativeDate(palette.created_at) %></span>
+                <span class="creation-date">Shared: <%= getRelativeDate(palette.created_at) %></span>
             </div>
         </section>
     </main>

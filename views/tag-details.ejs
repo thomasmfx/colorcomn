@@ -1,31 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <%- include('partials/head') %>
-    <link rel="stylesheet" href="/css/pages/tag-details.css">
+    <%- include('partials/head-boilerplate')    %>
 </head>
 <body>
     <%- include('partials/header', { currentRoute: 'tags' }) %>
-    <main class="container">
+    <main class="main spacing-top main-container">
         <section class="tag-details">
             <div class="tag-details__wrapper">
                 <h2 class="tag-name"><%= tag.name %></h2>
                 <div class="tag-details__actions">
-                    <button class="tag-details__action-btn tag-details__action-btn--delete" aria-label="Delete tag">Delete</button>
-                    <button class="tag-details__action-btn tag-details__action-btn--edit" aria-label="Edit tag">Edit</button>
+                    <button class="btn btn--secondary" aria-label="Delete tag">Delete</button>
+                    <button class="btn btn--primary" aria-label="Edit tag">Edit</button>
                 </div>
             </div>
-            <span class="tag-details__created-at">Shared at: <%= getRelativeDate(tag.created_at) %></span>
+            <span class="creation-date">Shared at: <%= getRelativeDate(tag.created_at) %></span>
         </section>
         <section class="colors">
             <h3 class="visually-hidden">Colors in this tag</h3>
-            <ul class="colors-list">
-                <% tag.colors.map((color) => { %>
-                    <li class="colors-list__item">
-                        <a href="/colors/<%= color.id %>" class="colors-list__item-link" style="background-color: <%= color.code %>" aria-label="Color <%= color.code %>"></a>
-                    </li>
-                <% }) %>
-            </ul>
+            <%- include('partials/colors-list', { colors: tag.colors }) %>
         </section>
     </main>
 </body>

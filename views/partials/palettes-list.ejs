@@ -1,0 +1,9 @@
+<ul class="list gap--xxl">
+    <% palettes.forEach((palette) => { %>
+        <li class="palette">
+            <a href="/palettes/<%= palette.id %>" class="link">
+                <%- include('palette-colors-list', { colors: palette.colors, includeColorsLink: locals.includeLink })%>
+            </a>
+        </li>
+    <% }) %>
+</ul>

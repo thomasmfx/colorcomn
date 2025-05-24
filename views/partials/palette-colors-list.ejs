@@ -1,0 +1,17 @@
+<ul class="palette-colors-list">
+    <% colors.forEach((color) => { %>
+        <li
+                class="color-swatch color-swatch--pill palette-colors-list__item"
+                style="background-color: <%= color.code %>"
+                data-position="<%= color.position %>"
+        >
+            <% if (locals.includeColorsLink) { %>
+                <a
+                        href="/colors/<%= color.id %>"
+                        class="palette-colors-list__item-link link"
+                >
+                </a>
+            <% } %>
+        </li>
+    <% }) %>
+</ul>
