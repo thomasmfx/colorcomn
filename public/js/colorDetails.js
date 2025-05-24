@@ -1,6 +1,6 @@
 import { getTextColorFromHex } from './utils.js';
 
-const colorBtn = document.querySelector('.color-details__color');
+const colorBtn = document.querySelector('.color-swatch');
 const colorCode = document.querySelector('.color-details__code');
 
 const hexColor = colorCode.textContent;

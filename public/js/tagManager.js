@@ -3,7 +3,7 @@ const tagOptionsList = document.querySelector('.tag-options');
 const tagOptions = document.querySelectorAll('.tag-options__item');
 const tagList = document.querySelector('.tag-list');
 const addTagBtn = document.querySelector('.tag-add-btn');
-const emptyMessage = document.querySelector('.modal__empty-message');
+const fallbackMessage = document.querySelector('.modal__fallback-message');
 const selectedTagsInput = document.querySelector('#selectedTagsInput');
 
 let selectedTags = [];
@@ -22,7 +22,7 @@ function createTagElement(id, name) {
 
   const tag = document.createElement('button');
   tag.type = 'button';
-  tag.classList.add('tag', 'pill-style');
+  tag.classList.add('tag', 'tag--xs');
   tag.dataset.id = id;
   tag.setAttribute('aria-label', `Remove tag: ${name}`);
 
@@ -75,7 +75,7 @@ function updateAvailableTags() {
     }
   });
 
-  emptyMessage.style.display = availableCount === 0 ? 'block' : 'none';
+  fallbackMessage.style.display = availableCount === 0 ? 'block' : 'none';
   tagOptionsList.style.display = availableCount === 0 ? 'none' : 'flex';
 }
 

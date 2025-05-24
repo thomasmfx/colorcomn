@@ -5,7 +5,7 @@ const colorOptionsList = document.querySelector('.color-options');
 const colorOptions = document.querySelectorAll('.color-options__item');
 const colorList = document.querySelector('.color-list');
 const addColorBtn = document.querySelector('.color-add-btn');
-const emptyMessage = document.querySelector('.modal__empty-message');
+const emptyMessage = document.querySelector('.modal__fallback-message');
 const selectedColorsInput = document.querySelector('#selectedColorsInput');
 
 let selectedColors = [];
@@ -15,6 +15,7 @@ function toggleModal() {
     modal.close();
   } else {
     updateAvailableColors();
+    updateColorOptionsBorder();
     modal.showModal();
   }
 }
@@ -99,50 +100,52 @@ function updateColorList() {
 }
 
 function updateColorOptionsBorder() {
-  // First, reset all border radius styles
   colorOptions.forEach((option) => {
-    option.style.borderRadius = '0';
+    option.style.borderRadius = '0px';
   });
 
-  // Find the first visible item
   let firstVisible = null;
   let lastVisible = null;
 
   for (let i = 0; i < colorOptions.length; i++) {
     if (colorOptions[i].style.display !== 'none') {
       if (firstVisible === null) {
-        firstVisible = colorOptions[i];
+        firstVisible = colorOptions[i]; // Assign the first visible item found
       }
-      lastVisible = colorOptions[i]; // Will end up being the last visible item
+      lastVisible = colorOptions[i]; // Continuously update lastVisible to the current visible item
     }
   }
 
-  // Apply border radius to first and last visible items
   if (firstVisible) {
-    firstVisible.style.borderRadius = '9px 9px 0 0';
-  }
-
-  if (lastVisible && lastVisible !== firstVisible) {
-    lastVisible.style.borderRadius = '0 0 9px 9px';
-  } else if (lastVisible === firstVisible) {
-    // If there's only one visible item, give it full rounded corners
-    firstVisible.style.borderRadius = '9px';
+    if (firstVisible === lastVisible) {
+      // Only one item is visible
+      firstVisible.style.borderRadius = '9px';
+    } else {
+      firstVisible.style.borderRadius = '9px 9px 0 0';
+      lastVisible.style.borderRadius = '0 0 9px 9px';
+    }
   }
 }
 
 function applyColorOptionHoverEffect(option, color) {
   const swatch = option.querySelector('.color-options__swatch');
+  const codeAndName = option.querySelector('.color-options__code-and-name');
 
   option.addEventListener('mouseenter', () => {
-    swatch.style.border = `2px solid ${getTextColorFromHex(color)}`;
     option.style.backgroundColor = color;
-    option.style.color = getTextColorFromHex(color);
+    swatch.style.border = `2px solid ${getTextColorFromHex(color)}`;
+    getTextColorFromHex(color) === 'white'
+      ? codeAndName.classList.add('color-options__code-and-name--light')
+      : codeAndName.classList.add('color-options__code-and-name--dark');
   });
 
   option.addEventListener('mouseleave', () => {
-    swatch.style.border = '1px solid var(--neutral)';
     option.style.background = 'none';
-    option.style.color = 'var(--neutral-dark)';
+    swatch.style.border = '1px solid var(--neutral)';
+    codeAndName.classList.remove(
+      'color-options__code-and-name--light',
+      'color-options__code-and-name--dark',
+    );
   });
 }
 
