@@ -389,7 +389,7 @@ select {
   cursor: pointer;
 }
 
-.color {
+.color-btn {
   width: 100%;
   height: 100%;
   display: flex;
@@ -403,59 +403,23 @@ select {
   cursor: pointer;
   position: relative;
 }
-.color__swatch {
+.color-btn__swatch {
   width: 30px;
   height: 30px;
   border-radius: 50%;
   border: 1px solid #e7e7e7;
 }
-.color__icon {
+.color-btn__icon {
   position: absolute;
   font-size: 1.2rem;
   transition: opacity 100ms ease-in-out;
   opacity: 0;
 }
-.color__icon--light {
+.color-btn__icon--light {
   color: #ffffff;
 }
-.color:hover .color__icon, .color:focus-visible .color__icon {
+.color-btn:hover .color-btn__icon, .color-btn:focus-visible .color-btn__icon {
   opacity: 1;
-}
-
-.color-options {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  list-style: none;
-  border: 2px solid #4c4b4b;
-  border-radius: 0.625rem;
-}
-.color-options__item {
-  width: 100%;
-  height: 35px;
-  font-size: 0.9rem;
-  padding: 0.25rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  font-weight: 600;
-  cursor: pointer;
-}
-.color-options__swatch {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 1px solid #e7e7e7;
-}
-
-.color-options__code-and-name {
-  color: #4c4b4b;
-}
-.color-options__code-and-name--dark {
-  color: #000000;
-}
-.color-options__code-and-name--light {
-  color: #ffffff;
 }
 
 .main-container {
@@ -561,6 +525,42 @@ select {
   color: transparent;
   font-weight: 600;
   transition: all 300ms ease-in-out;
+}
+
+.color-options {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  list-style: none;
+  border: 2px solid #4c4b4b;
+  border-radius: 0.625rem;
+}
+.color-options__item {
+  width: 100%;
+  height: 35px;
+  font-size: 0.9rem;
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-weight: 600;
+  cursor: pointer;
+}
+.color-options__swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 1px solid #e7e7e7;
+}
+
+.color-options__code-and-name {
+  color: #4c4b4b;
+}
+.color-options__code-and-name--dark {
+  color: #000000;
+}
+.color-options__code-and-name--light {
+  color: #ffffff;
 }
 
 .tag {

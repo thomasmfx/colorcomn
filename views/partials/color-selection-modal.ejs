@@ -1,0 +1,23 @@
+<dialog id="colorModal" class="modal" aria-labelledby="modalTitle">
+    <div class="modal__content">
+        <h2 class="modal__title" id="modalTitle">Select color</h2>
+        <p class="modal__subtitle">Associate your tag with some colors</p>
+
+        <div class="modal__body">
+            <ul class="color-options">
+                <% colors.forEach((color) => { %>
+                    <li class="color-options__item"
+                        data-id="<%= color.id %>"
+                        data-name="<%= color.name %>"
+                        tabindex="0"
+                        role="option"
+                        aria-label="Select color: <%= color.name %>">
+                        <div class="color-options__swatch" style="background-color: <%= color.code %>" data-code="<%= color.code %>"></div>
+                        <span class="color-options__code-and-name"><%= color.code %> - <%= color.name%></span>
+                    </li>
+                <% }) %>
+            </ul>
+            <p class="modal__fallback-message">No colors available</p>
+        </div>
+    </div>
+</dialog>

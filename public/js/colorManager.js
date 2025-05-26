@@ -22,29 +22,30 @@ function toggleModal() {
 
 function createColorElement(id, name, code) {
   const colorItem = document.createElement('li');
+  colorItem.classList.add('list__item');
 
-  const color = document.createElement('button');
-  color.type = 'button';
-  color.className = 'color';
-  color.dataset.id = id;
-  color.setAttribute('aria-label', `Remove color: ${name}/${code}`);
+  const colorBtn = document.createElement('button');
+  colorBtn.type = 'button';
+  colorBtn.className = 'color-btn';
+  colorBtn.dataset.id = id;
+  colorBtn.setAttribute('aria-label', `Remove color: ${name}/${code}`);
 
   const colorSwatch = document.createElement('span');
-  colorSwatch.className = 'color__swatch';
+  colorSwatch.className = 'color-btn__swatch';
   colorSwatch.style.backgroundColor = code;
 
   const colorIcon = document.createElement('i');
-  colorIcon.className = 'bx bx-x color__icon';
+  colorIcon.className = 'bx bx-x color-btn__icon';
   colorIcon.setAttribute('aria-hidden', 'true');
   if (getTextColorFromHex(code) === 'white') {
-    colorIcon.classList.add('color__icon--light');
+    colorIcon.classList.add('color-btn__icon--light');
   }
 
-  color.appendChild(colorSwatch);
-  color.appendChild(colorIcon);
-  colorItem.appendChild(color);
+  colorBtn.appendChild(colorSwatch);
+  colorBtn.appendChild(colorIcon);
+  colorItem.appendChild(colorBtn);
 
-  color.addEventListener('click', () => removeColor(id));
+  colorBtn.addEventListener('click', () => removeColor(id));
 
   return colorItem;
 }
@@ -182,6 +183,6 @@ colorOptions.forEach((option) => {
 });
 
 // Initialize
-updateColorList();
-updateSelectedColorsInput();
-updateColorOptionsBorder();
+// updateColorList();
+// updateSelectedColorsInput();
+// updateColorOptionsBorder();
