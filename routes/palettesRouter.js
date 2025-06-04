@@ -6,5 +6,6 @@ const palettesRouter = Router();
 
 palettesRouter.get('/:id', palettesController.getPalette);
 palettesRouter.get('/', palettesController.getAllPalettes);
+palettesRouter.post('/', palettesController.insertPalette);
 
 module.exports = palettesRouter;

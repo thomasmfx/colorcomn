@@ -57,20 +57,23 @@ async function insertPalette(name, description, colors) {
       INSERT INTO palettes (name, description, created_at)
       VALUES ($1, $2, NOW())
       RETURNING id
-    )
-    INSERT INTO colors_palettes (color_id, palette_id, color_position)
-    SELECT
-      (elem->>'color_id')::int AS color_id,
-      np.id AS palette_id,
-      (elem->>'position')::int AS color_position
-    FROM
-      new_palette np,
-      jsonb_array_elements($3::jsonb) AS elem;
+    ),
+    color_insertion AS (
+      INSERT INTO colors_palettes (color_id, palette_id, color_position)
+      SELECT
+        (elem->>'id')::int AS color_id,
+        np.id AS palette_id,
+        (elem->>'position')::int AS color_position
+      FROM
+        new_palette np,
+        jsonb_array_elements($3::jsonb) AS elem
+    ) 
+    SELECT id from new_palette;
   `,
     [name, description, colors],
   );
 
-  return rows;
+  return rows[0].id;
 }
 
 async function updatePaletteById(id, name, description, colors) {

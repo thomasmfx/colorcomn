@@ -1,0 +1,119 @@
+@use '../abstract/variables' as var;
+
+.palette-form {
+  width: 450px;
+}
+
+.palette-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  gap: 1em;
+}
+
+.palette-colors {
+  height: 190px;
+
+  &__item {
+    flex-grow: 1;
+
+    &--placeholder {
+      border-radius: var.$pill-border;
+      background-color: var.$color-neutral; // Moved from JS
+    }
+  }
+
+  &__btn-color {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: var.$pill-border;
+    gap: 0.5em;
+    width: 100%;
+    height: 100%;
+    background-color: var.$color-neutral; // Default, overridden by JS
+    border: none;
+    cursor: pointer;
+
+    &:hover,
+    &:focus-visible {
+      .palette-colors__btn-color-icon {
+        opacity: 1;
+      }
+    }
+  }
+
+  &__btn-color-icon {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity var.$transition-fast;
+    color: #000000; // Default icon color
+
+    &--light { // This class is added by JS
+      color: #FFFFFF;
+    }
+  }
+}
+
+// Styles for color options in modal based on visibility
+.color-options__item {
+  // ... existing styles
+  &.is-first-visible-option.is-last-visible-option { // Only one visible
+    border-radius: 9px;
+  }
+  &.is-first-visible-option:not(.is-last-visible-option) { // First of multiple
+    border-radius: 9px 9px 0 0;
+  }
+  &.is-last-visible-option:not(.is-first-visible-option) { // Last of multiple
+    border-radius: 0 0 9px 9px;
+  }
+  &:not(.is-first-visible-option):not(.is-last-visible-option) { // Middle items
+    border-radius: 0;
+  }
+}
+
+
+.palette-description {
+  outline: none;
+  padding: .5em;
+  resize: none;
+  background-color: transparent;
+  border: 2px solid var.$color-neutral;
+  border-radius: var.$radius-sm;
+
+  &::placeholder {
+    color: var.$color-neutral-dark-opaque;
+  }
+
+  &:focus {
+    border: 2px solid var.$color-neutral-dark-opaque;
+  }
+}
+
+.btn-add-color {
+  display: flex;
+  align-items: center;
+  border: none;
+  background: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.input-palette-name {
+  background-color: transparent;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: var.$spacing-sm;
+  font-size: 2.5rem;
+  font-weight: bold;
+
+  &::placeholder {
+    color: var.$color-neutral;
+  }
+}

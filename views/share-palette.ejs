@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head-boilerplate') %>
+    <script src="/js/paletteManager.js" type="module" defer></script>
+</head>
+<body>
+<%- include('partials/header', { currentRoute: 'share' }) %>
+<main class="main self-center center">
+    <form action="/palettes" method="POST" class="form palette-form" id="palette-form">
+        <div class="form-field">
+            <div class="form-field__header">
+                <span id="colorsLabel" class="form-field__label">Colors</span>
+                <button type="button"
+                        class="btn-add-color"
+                        aria-label="Add color"
+                        aria-controls="colorModal"
+                        aria-haspopup="dialog">
+                    <i class='bx bx-plus-circle' aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="palette-container">
+                <ul class="palette-colors list gap--s" aria-labelledby="colorsLabel">
+<!--                    Colors will be added here dynamically-->
+                </ul>
+                <input type="hidden" name="colors" id="selectedColorsInput" required>
+            </div>
+        </div>
+
+        <div class="form-field">
+            <input type="text" class="input-palette-name" name="name" aria-label="Palette name" id="palette-name" placeholder="Palette name" required>
+        </div>
+        <div class="form-field">
+            <label for="palette-description" class="form-field__label">Description</label>
+            <textarea name="description" id="palette-description" class="palette-description" rows="4" placeholder="Give a short description to your palette"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Share</button>
+    </form>
+</main>
+
+<%- include('partials/color-selection-modal', { colors: colors }) %>
+
+<template id="color-item-template">
+    <li class="palette-colors__item">
+        <button type="button" class="palette-colors__btn-color" data-id="" aria-label="">
+            <i class='bx bx-x-circle palette-colors__btn-color-icon' aria-hidden="true"></i>
+        </button>
+    </li>
+</template>
+
+<template id="empty-color-placeholder-template">
+    <li class="palette-colors__item palette-colors__item--placeholder"></li>
+</template>
+
+</body>
+</html>
