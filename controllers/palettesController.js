@@ -18,7 +18,20 @@ async function getPalette(req, res) {
   });
 }
 
+async function insertPalette(req, res) {
+  const { name, description, colors } = req.body;
+
+  const returnedId = await paletteModel.insertPalette(
+    name,
+    description,
+    colors,
+  );
+
+  res.redirect(`/palettes/${returnedId}`);
+}
+
 module.exports = {
   getAllPalettes,
   getPalette,
+  insertPalette,
 };

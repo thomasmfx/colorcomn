@@ -21,8 +21,17 @@ async function getShareTagPage(req, res) {
   });
 }
 
+async function getSharePalettePage(req, res) {
+  const colors = await colorModel.getAllColors();
+
+  res.render('share-palette', {
+    colors: colors,
+  });
+}
+
 module.exports = {
   getSharePage,
   getShareColorPage,
   getShareTagPage,
+  getSharePalettePage,
 };
